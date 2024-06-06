@@ -1,2 +1,2 @@
-realsense-ros/realsense2_camera:realsense-ros/realsense2_description
+realsense-ros/realsense2_camera:realsense-ros/realsense2_description:rviz_distance_tool
 -DCATKIN_DEVEL_PREFIX=/home/jerry/perception_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jerry/perception_ws/install -G Unix Makefiles

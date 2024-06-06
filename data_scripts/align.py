@@ -32,6 +32,9 @@ class BagImageSaver:
     def process_bag(self):
         try:
             with rosbag.Bag(self.bag_file, 'r') as bag:
+                total_messages = bag.get_message_count(topic_filters=['/camera/color/image_raw', '/camera/depth/image_rect_raw'])
+                processed_messages = 0
+
                 for topic, msg, t in bag.read_messages(topics=['/camera/color/image_raw', '/camera/depth/image_rect_raw']):
                     if topic == '/camera/color/image_raw':
                         rgb_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
@@ -48,12 +51,15 @@ class BagImageSaver:
                         cv2.imwrite(rgb_filename, rgb_image)
                         cv2.imwrite(depth_filename, aligned_depth_image)
 
-                        rospy.loginfo(f"Saved frame {self.frame_count}")
                         self.frame_count += 1
 
                         # Reset the variables to avoid using the same images again
                         del rgb_image
                         del depth_image
+
+                    processed_messages += 1
+                    if processed_messages % 10 == 0 or processed_messages == total_messages:
+                        rospy.loginfo(f"Processed {processed_messages}/{total_messages} messages ({(processed_messages / total_messages) * 100:.2f}%)")
 
         except (CvBridgeError, IOError) as e:
             rospy.logerr(f"Could not process bag file: {e}")
@@ -96,6 +102,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
 
