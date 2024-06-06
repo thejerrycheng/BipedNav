@@ -166,7 +166,7 @@ if __name__ == '__main__':
 #             # Save the aligned images
 #             self.save_images(color_cvt, depth_image, frame_count)
 
-#             frame_count += 1
+#             frame_count += 1 
 
 #             # Display aligned images (optional)
 #             # self.show(color_cvt, depth_image)
