@@ -156,7 +156,7 @@ if __name__ == '__main__':
 #                 continue
 
 #             color_image = np.asanyarray(color_frame.get_data())
-#             depth_image = np.asanyarray(depth_frame.get_data())
+#             depth_image = np.asanyarray(depth_frame .get_data())
 
 #             self.depth_frame = depth_frame
 #             self.color_intrin = color_frame.profile.as_video_stream_profile().intrinsics
