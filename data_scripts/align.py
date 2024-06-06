@@ -3,14 +3,16 @@ import numpy as np
 import cv2
 import copy
 import math
+import argparse
+import os
 
 class ARC:
-    def __init__(self):
-        bag = r'0626_005.bag'
+    def __init__(self, bag_file):
         self.pipeline = rs.pipeline()
+        self.bag_file = bag_file
 
         config = rs.config()
-        config.enable_device_from_file(bag, False)
+        config.enable_device_from_file(bag_file, False)
         config.enable_all_streams()
 
         profile = self.pipeline.start(config)
@@ -18,9 +20,22 @@ class ARC:
         playback = device.as_playback()
         playback.set_real_time(False)
 
+        self.create_output_dirs()
+
+    def create_output_dirs(self):
+        base_name = os.path.splitext(os.path.basename(self.bag_file))[0]
+        self.rgb_dir = base_name + "_rgb"
+        self.depth_dir = base_name + "_depth"
+
+        if not os.path.exists(self.rgb_dir):
+            os.makedirs(self.rgb_dir)
+        if not os.path.exists(self.depth_dir):
+            os.makedirs(self.depth_dir)
+
     def video(self):
         align_to = rs.stream.depth
         align = rs.align(align_to)
+        frame_count = 0
         for i in range(10):
             self.pipeline.wait_for_frames()
         while True:
@@ -40,10 +55,23 @@ class ARC:
 
             color_cvt = cv2.cvtColor(color_image, cv2.COLOR_BGR2RGB)
 
-            # Display aligned images
-            self.show(color_cvt, depth_image)
+            # Save the aligned images
+            self.save_images(color_cvt, depth_image, frame_count)
 
-            break
+            frame_count += 1
+
+            # Display aligned images (optional)
+            # self.show(color_cvt, depth_image)
+
+            if frame_count >= 100:  # Limiting to 100 frames for this example
+                break
+
+    def save_images(self, color_img, depth_img, frame_count):
+        rgb_filename = os.path.join(self.rgb_dir, f"frame_{frame_count:04d}.png")
+        depth_filename = os.path.join(self.depth_dir, f"frame_{frame_count:04d}.png")
+
+        cv2.imwrite(rgb_filename, color_img)
+        cv2.imwrite(depth_filename, depth_img)
 
     def show(self, color_img, depth_img):
         self.img_origin = color_img
@@ -61,11 +89,11 @@ class ARC:
                 break
 
     def draw(self, event, x, y, flags, params):
-        img = copy.copy(self.img_copy) 
+        img = copy.copy(self.img_copy)
         if event == 1:
             self.ix = x
             self.iy = y
-        elif event == 4: 
+        elif event == 4:
             img = self.img_copy
             self.img_work(img, x, y)
         elif event == 2:
@@ -101,4 +129,8 @@ class ARC:
         return dist
 
 if __name__ == '__main__':
-    ARC().video()
+    parser = argparse.ArgumentParser(description="Align RGB and Depth images from a RealSense bag file.")
+    parser.add_argument('bag_file', type=str, help='Path to the bag file')
+    args = parser.parse_args()
+
+    ARC(args.bag_file).video()
