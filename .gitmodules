@@ -1,0 +1,3 @@
+[submodule "perception_ws/src/realsense-ros"]
+	path = perception_ws/src/realsense-ros
+	url = https://github.com/IntelRealSense/realsense-ros.git
