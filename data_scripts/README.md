@@ -67,12 +67,15 @@ The script will save the sequence into the following locations. Currently, the s
 conda create -n bpdproc python=3.8.10 pip
 conda activate bpdproc
 pip install -r process_requirements.txt
+
 # Invocation
 python data_scripts/process.py --bag ../dataset/WI_20240608_174726.bag --out processed
+
 # <Do some work moving the start, end frames>
-# Press "s", and enter the s'uffix "up" for example.
+# Press "s", and enter the suffix "up" for example.
+
 # This will create data in:
-processed/WI_20240608_174726-up/rgb/*.png
-processed/WI_20240608_174726-up/depth/*.png
-processed/WI_20240608_174726-up/color_camera_info.json
+# processed/WI_20240608_174726-up/rgb/*.png
+# processed/WI_20240608_174726-up/depth/*.png
+# processed/WI_20240608_174726-up/color_camera_info.json
 ```
