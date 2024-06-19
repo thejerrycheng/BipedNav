@@ -10,19 +10,66 @@ import json
 import tkinter as tk
 from tkinter import simpledialog
 
+
+def read_timestamps(bag_file, topic):
+    """Read timestamps from a ros topic."""
+    
+    timestamps = []
+    
+    with rosbag.Bag(bag_file, 'r') as bag:        
+        for topic, _, t in bag.read_messages(topics=[topic]):
+            timestamps.append(t.to_sec())
+                
+    return timestamps
+
+
+def temporal_align(offset, a1, a2):
+    if offset > 0:
+        a1 = a1[offset:]
+    else:
+        a2 = a2[-offset:]
+        
+    length = min(len(a1), len(a2))
+    
+    return a1[:length], a2[:length]
+        
+
 def read_images_from_rosbag(bag_file, topic):
     bridge = CvBridge()
     images = []
     timestamps = []
-    with rosbag.Bag(bag_file, 'r') as bag:
+    n = 0
+    
+    with rosbag.Bag(bag_file, 'r') as bag:        
         for topic, msg, t in bag.read_messages(topics=[topic]):
             try:
                 cv_image = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough")
                 images.append(cv_image)
                 timestamps.append(t.to_sec())
+                n += 1
             except Exception as e:
                 print(f"Error converting image: {e}")
+                
+        # print(n)
     return images, timestamps
+
+
+def find_temporal_offset(t1, t2):
+    """Temporally align two lists of timestamps and return the best
+    index offset between t1 and t2
+    """
+        
+    offset = -1
+    best_diff = np.inf
+            
+    for i in range(min(20, len(t1))):
+        for j in range(min(20, len(t2))):
+            if best_diff > abs(t2[j] - t1[i]):
+                best_diff = abs(t2[j] - t1[i])
+                offset = i - j
+                
+    return offset
+
 
 def read_camera_info_from_rosbag(bag_file, topic):
     camera_info = []
@@ -58,16 +105,14 @@ def normalize_depth_image(image):
 def resize_images(images, target_size):
     return [cv2.resize(image, target_size, interpolation=cv2.INTER_AREA) for image in images]
 
-def display_images(depth_images, color_images, start_index, end_index):
+def display_images(depth_images, color_images, start_index, end_index):    
     depth_start_image = normalize_depth_image(depth_images[start_index].copy())
     depth_end_image = normalize_depth_image(depth_images[end_index].copy())
     color_start_image = color_images[start_index].copy()
     color_end_image = color_images[end_index].copy()
-    
+        
     # Determine the minimum dimensions of all images
-    min_height = min(depth_start_image.shape[0], depth_end_image.shape[0], color_start_image.shape[0], color_end_image.shape[0])
-    min_width = min(depth_start_image.shape[1], depth_end_image.shape[1], color_start_image.shape[1], color_end_image.shape[1])
-    target_size = (min_width, min_height)
+    target_size = (600, 400)
 
     # Resize all images to the minimum dimensions
     depth_start_image = cv2.resize(depth_start_image, target_size, interpolation=cv2.INTER_AREA)
@@ -104,7 +149,7 @@ def play_video(images, start_index, end_index):
         if cv2.waitKey(int(1000 / 30)) & 0xFF == ord('x'):
             break
 
-def save_images_and_info(depth_images, color_images, start_index, end_index, bag_file, out_folder, depth_camera_info, color_camera_info):
+def save_images_and_info(depth_images, color_images, start_index, end_index, bag_file, out_folder, color_camera_info):
     root = tk.Tk()
     root.withdraw()
     suffix = simpledialog.askstring("Input", "Enter suffix for folder name:")
@@ -134,15 +179,11 @@ def save_images_and_info(depth_images, color_images, start_index, end_index, bag
         print(f"Saved {color_file_name}")
 
     # Save camera info
-    depth_camera_info_file = os.path.join(base_folder, "depth_camera_info.json")
     color_camera_info_file = os.path.join(base_folder, "color_camera_info.json")
 
-    with open(depth_camera_info_file, 'w') as f:
-        json.dump(depth_camera_info[0], f, indent=4)
     with open(color_camera_info_file, 'w') as f:
         json.dump(color_camera_info[0], f, indent=4)
 
-    print(f"Saved {depth_camera_info_file}")
     print(f"Saved {color_camera_info_file}")
 
 def main():
@@ -153,21 +194,25 @@ def main():
 
     bag_file = args.bag
     out_folder = args.out
-    depth_topic = "/camera/depth/image_rect_raw"
+    # depth_topic = "/camera/depth/image_rect_raw"
+    depth_topic = "/camera/aligned_depth_to_color/image_raw"
     color_topic = "/camera/color/image_raw"
-    depth_info_topic = "/camera/depth/camera_info"
     color_info_topic = "/camera/color/camera_info"
     
     depth_images, depth_timestamps = read_images_from_rosbag(bag_file, depth_topic)
     color_images, color_timestamps = read_images_from_rosbag(bag_file, color_topic)
-    depth_camera_info = read_camera_info_from_rosbag(bag_file, depth_info_topic)
     color_camera_info = read_camera_info_from_rosbag(bag_file, color_info_topic)
-
+    
     print(f"Number of depth frames: {len(depth_images)}")
     print(f"Number of RGB frames: {len(color_images)}")
 
+    offset = find_temporal_offset(depth_timestamps, color_timestamps)
+    depth_images, color_images = temporal_align(offset, depth_images, color_images)
+    
+    print(f"Found best offset from depth to RGB is: {offset}")
+    
     start_index = 0
-    end_index = min(len(depth_images), len(color_images)) - 1
+    end_index = len(depth_images) - 1
 
     try:
         while True:
@@ -197,7 +242,7 @@ def main():
             elif key == ord('p'):
                 play_video(depth_images, start_index, end_index)
             elif key == ord('s'):
-                save_images_and_info(depth_images, color_images, start_index, end_index, bag_file, out_folder, depth_camera_info, color_camera_info)
+                save_images_and_info(depth_images, color_images, start_index, end_index, bag_file, out_folder, color_camera_info)
             elif key == ord('x'):  # Exit
                 break
 
