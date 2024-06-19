@@ -44,7 +44,7 @@ Use keyboard controls T, Y, G, H to move start frame position, and U, I, J, K to
 * J - move end frame left by 1 frame
 * K - move end frame right by 1 frame
 
-#### Auxilary Controls
+#### Auxilary controls
 
 You can play a video between the start and end frame by pressing "p", and stop by pressing "x".
 
@@ -61,7 +61,7 @@ The script will save the sequence into the following locations. Currently, the s
 {out}/{bag_filename}-{suffix}/color_camera_info.json
 ```
 
-### End-to-end Example
+### End-to-end example
 ```
 # Installation
 conda create -n bpdproc python=3.8.10 pip
