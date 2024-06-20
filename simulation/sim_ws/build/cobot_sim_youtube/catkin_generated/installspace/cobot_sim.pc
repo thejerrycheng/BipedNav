@@ -1,0 +1,8 @@
+prefix=/home/jerry/sim_ws/install
+
+Name: cobot_sim
+Description: Description of cobot_sim
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

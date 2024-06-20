@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ApplyBodyWrench.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ApplyJointEffort.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/BodyRequest.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ContactState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ContactsState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/DeleteLight.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/DeleteModel.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetJointProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetLightProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetLinkProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetLinkState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetModelProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetModelState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetPhysicsProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/GetWorldProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/JointRequest.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/LinkState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/LinkStates.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ModelState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ModelStates.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ODEJointProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/ODEPhysics.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/PerformanceMetrics.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SensorPerformanceMetric.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetJointProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetJointTrajectory.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetLightProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetLinkProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetLinkState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetModelConfiguration.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetModelState.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SetPhysicsProperties.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/SpawnModel.h"
+  "/home/jerry/sim_ws/devel/include/gazebo_msgs/WorldState.h"
+  "CMakeFiles/gazebo_msgs_generate_messages_cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

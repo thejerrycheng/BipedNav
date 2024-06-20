@@ -1,0 +1,289 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="stair_test_world">
+    <!-- Include the sun -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+    <!-- Include the ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Add the staircase -->
+    <model name="staircase">
+      <static>true</static>
+      <!-- Step 1 -->
+      <link name="step_1">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.1 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>0 0 0.1 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 2 -->
+      <link name="step_2">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>1 0 0.3 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>1 0 0.3 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 3 -->
+      <link name="step_3">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>2 0 0.5 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>2 0 0.5 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 4 -->
+      <link name="step_4">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>3 0 0.7 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>3 0 0.7 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 5 -->
+      <link name="step_5">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>4 0 0.9 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>4 0 0.9 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 6 -->
+      <link name="step_6">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>5 0 1.1 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>5 0 1.1 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 7 -->
+      <link name="step_7">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>6 0 1.3 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>6 0 1.3 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 8 -->
+      <link name="step_8">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>7 0 1.5 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>7 0 1.5 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 9 -->
+      <link name="step_9">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>8 0 1.7 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>8 0 1.7 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <!-- Step 10 -->
+      <link name="step_10">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>9 0 1.9 0 0 0</pose>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1 2 0.2</size>
+            </box>
+          </geometry>
+          <pose>9 0 1.9 0 0 0</pose>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Red</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    
+    <!-- Physics -->
+    <physics type="ode">
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+    
+    <!-- Lighting -->
+    <light name="directional_light" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+  </world>
+</sdf>
