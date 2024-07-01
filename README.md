@@ -1,2 +1,2 @@
 # BipedNav
-This is the repo for BipedNav
+This is the repo for BipedNav, This is a comprehensive documentation for the BipedNav research under the neural robotics lab at the University of Toronto. This document is designed to keep track of the progress made, list the detailed instructions how to run the code, past literature papers, dataset links, and serve as a reference for the future students. 

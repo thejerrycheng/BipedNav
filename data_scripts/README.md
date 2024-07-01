@@ -7,6 +7,7 @@ This script processes our .bag data, extracting subsequences of depth and RGB im
 You need Python 3.8.10 exactly.
 ```
 conda create -n bpdproc python=3.8.10 pip
+conda activate bpdproc
 ```
 
 This relies on a ROS Noetic Installation. To install Python dependencies, run the script:
@@ -43,7 +44,7 @@ Use keyboard controls T, Y, G, H to move start frame position, and U, I, J, K to
 * J - move end frame left by 1 frame
 * K - move end frame right by 1 frame
 
-#### Auxilary Controls
+#### Auxilary controls
 
 You can play a video between the start and end frame by pressing "p", and stop by pressing "x".
 
@@ -58,4 +59,23 @@ The script will save the sequence into the following locations. Currently, the s
 {out}/{bag_filename}-{suffix}/rgb/*.png
 {out}/{bag_filename}-{suffix}/depth/*.png
 {out}/{bag_filename}-{suffix}/color_camera_info.json
+```
+
+### End-to-end example
+```
+# Installation
+conda create -n bpdproc python=3.8.10 pip
+conda activate bpdproc
+pip install -r process_requirements.txt
+
+# Invocation
+python data_scripts/process.py --bag ../dataset/WI_20240608_174726.bag --out processed
+
+# <Do some work moving the start, end frames>
+# Press "s", and enter the suffix "up" for example.
+
+# This will create data in:
+# processed/WI_20240608_174726-up/rgb/*.png
+# processed/WI_20240608_174726-up/depth/*.png
+# processed/WI_20240608_174726-up/color_camera_info.json
 ```

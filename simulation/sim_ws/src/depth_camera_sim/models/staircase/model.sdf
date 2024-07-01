@@ -1,0 +1,27 @@
+<model name="staircase">
+  <static>true</static>
+  <link name="staircase_link">
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>2 4 1</size>
+        </box>
+      </geometry>
+      <pose>0 0 0.5 0 0 0</pose>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>2 4 1</size>
+        </box>
+      </geometry>
+      <pose>0 0 0.5 0 0 0</pose>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Red</name>
+        </script>
+      </material>
+    </visual>
+  </link>
+</model>
