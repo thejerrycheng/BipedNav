@@ -1,2 +1,0 @@
-cobot_sim_youtube:depth_camera_sim
--DCATKIN_DEVEL_PREFIX=/home/jerry/sim_ws/devel -DCMAKE_INSTALL_PREFIX=/home/jerry/sim_ws/install -G Unix Makefiles

@@ -1,0 +1,4 @@
+Invoking command in '/home/jerry/sim_ws/build/urdf_example': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/jerry/sim_ws/build/urdf_example -- -j16 -l16
+Invoked command in '/home/jerry/sim_ws/build/urdf_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/jerry/sim_ws/build/urdf_example -- -j16 -l16
+Invoking command in '/home/jerry/sim_ws/build/urdf_example': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/jerry/sim_ws/build/urdf_example
+Invoked command in '/home/jerry/sim_ws/build/urdf_example' returned '0': CMAKE_PREFIX_PATH=/opt/ros/foxy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/jerry/sim_ws/build/urdf_example
