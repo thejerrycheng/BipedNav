@@ -28,6 +28,7 @@ function Delta = impact_map(x, data)
          0 0 -1 0 0; 
          0 -1 0 0 0; 
          0 0 -1 0 1]; 
+         
     d = [-3; 2; 2; 2; 1] * pi;
     
     % Delta: Impact map (apply Delta2 to Delta1)

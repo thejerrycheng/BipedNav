@@ -207,42 +207,5 @@
         </inertial>
     </link>
 
-    <joint name="camera_joint" type="fixed">
-        <origin xyz="0.1 0 0.3" rpy="0 0.785 0"/>
-        <parent link="base_link"/>
-        <child link="camera_link"/>        
-    </joint>
-
-    <link name="camera_link">
-        <visual>
-            <origin xyz="-0.03 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.06 0.15 0.15" />
-            </geometry>
-            <material name="white">
-                <color rgba="1 1 1 1"/>
-            </material>
-        </visual>
-        <visual>
-            <origin xyz="0.03 0 0" rpy="0 1.571 0"/>
-            <geometry>
-                <cylinder length="0.06" radius="0.04" />
-            </geometry>
-            <material name="blue">
-                <color rgba="0.2 0.2 1 1"/>
-            </material>
-        </visual>
-        <collision>
-            <origin xyz="0.0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.12 0.15 0.15" />
-            </geometry>
-        </collision>
-        <inertial>
-            <origin xyz="0.0 0 0" rpy="0 0 0"/>
-            <mass value="0" />
-            <inertia ixx="0.00078125" ixy="0.0" ixz="0.0" iyy="0.0009375" iyz="0.0" izz="0.00125" />
-        </inertial>
-    </link>
 
 </robot>
