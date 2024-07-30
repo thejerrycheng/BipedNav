@@ -1,4 +1,5 @@
 pyyaml
+pycryptodome
 rosbag==1.16.0
 bagpy==0.5
 opencv-python==4.9.0.80
