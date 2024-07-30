@@ -1,5 +1,0 @@
-pyyaml
-pycryptodome
-bagpy
-opencv-python
-pyrealsense2
